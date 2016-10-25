@@ -17,4 +17,13 @@ describe('SinglyLinkedList', function () {
     list.addAll([1, 2, 3, 4, 5, 6]);
     assert.strictEqual(list.size, 6);
   });
+
+  it('should be able to clear itself of all values', function () {
+    var list = new SinglyLinkedList();
+    list.add('one');
+    list.add('two');
+    assert.strictEqual(list.size, 2);
+    list.clear();
+    assert.strictEqual(list.size, 0);
+  })
 });
