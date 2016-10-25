@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint ./*.js ./test",
     "prepublish": "npm test",
-    "test": "mocha"
+    "test": "npm run lint && mocha"
   },
   "engines": {
     "node": ">=5"
@@ -29,9 +29,18 @@
     "chai": "^3.5.0",
     "eslint": "^3.2.2",
     "eslint-config-standard": "^6.2.0",
+    "eslint-plugin-promise": "latest",
+    "eslint-plugin-standard": "latest",
     "mocha": "^3.0.2"
   },
   "eslintConfig": {
-    "extends": "standard"
+    "extends": "standard",
+    "rules": {
+      "semi": 0
+    },
+    "env": {
+      "node": true,
+      "mocha": true
+    }
   }
 }
