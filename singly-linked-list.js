@@ -56,6 +56,29 @@ SinglyLinkedList.prototype.addAll = function (data) {
 }
 
 /**
+ * Return the element at the specified position in this list.
+ *
+ * @param  {number}     index
+ * @throws {RangeError} If index is 0 or above size of this list
+ * @return {Object}
+ */
+SinglyLinkedList.prototype.get = function (index) {
+  var cursor = 1;
+  var currentNode = this.head;
+
+  if (this.size === 0 || index < 1 || index > this.size) {
+    throw new RangeError('Index is out of range.');
+  }
+
+  while (cursor < index) {
+    currentNode = currentNode.next;
+    cursor++;
+  }
+
+  return currentNode;
+}
+
+/**
  * Remove all of the elements in this list.
  *
  * @return {void}

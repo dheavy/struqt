@@ -30,4 +30,11 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(list.head, null);
     assert.strictEqual(list.tail, null);
   });
+
+  it('should be able to search a node at a given index', function () {
+    var list = new SinglyLinkedList();
+    list.addAll(['one', 'two', 'three', 'four', 'five']);
+    assert.strictEqual(list.get(2).data, 'two');
+    assert.throws(function () { list.get(6) }, RangeError);
+  });
 });
