@@ -25,5 +25,7 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(list.size, 2);
     list.clear();
     assert.strictEqual(list.size, 0);
-  })
+    assert.strictEqual(list.head, null);
+    assert.strictEqual(list.tail, null);
+  });
 });

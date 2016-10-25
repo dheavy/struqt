@@ -51,7 +51,7 @@ SinglyLinkedList.prototype.addAll = function (data) {
   var l = data.length;
 
   for (i; i < l; i++) {
-    this.add(data);
+    this.add(data[i]);
   }
 }
 
