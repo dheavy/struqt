@@ -37,9 +37,23 @@ SinglyLinkedList.prototype.add = function (data) {
   currentNode.next = node;
   this.tail = node;
   this.size++;
-
   return node;
 };
+
+/**
+ * Append all of the elements in the specified array
+ * to the end of this list.
+ *
+ * @param {array} data
+ */
+SinglyLinkedList.prototype.addAll = function (data) {
+  var i = 0;
+  var l = data.length;
+
+  for (i; i < l; i++) {
+    this.add(data);
+  }
+}
 
 /**
  * Remove all of the elements in this list.
