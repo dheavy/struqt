@@ -1,14 +1,12 @@
 {
   "name": "struqt",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Implementation of several common data structures.",
   "main": "index.js",
   "scripts": {
-    "check": "npm test && npm run lint",
-    "dist": "babel src --out-dir ./",
-    "lint": "eslint src test",
-    "prepublish": "npm run dist",
-    "test": "mocha --compilers js:babel-core/register -R spec ./test/endpoint.js"
+    "lint": "eslint ./*.js ./test",
+    "prepublish": "npm test",
+    "test": "mocha"
   },
   "engines": {
     "node": ">=5"
@@ -28,33 +26,12 @@
   },
   "homepage": "https://github.com/dheavy/struqt#readme",
   "devDependencies": {
-    "@yomguithereal/eslint-config": "^3.0.0",
-    "babel-cli": "^6.6.5",
-    "babel-core": "^6.7.4",
-    "babel-plugin-transform-es2015-destructuring": "^6.6.5",
-    "babel-preset-es2015": "^6.6.0",
     "chai": "^3.5.0",
     "eslint": "^3.2.2",
-    "mocha": "^3.0.2",
-    "rimraf": "^2.5.2"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ],
-    "plugins": [
-      [
-        "transform-es2015-destructuring",
-        {
-          "loose": true
-        }
-      ]
-    ]
+    "eslint-config-standard": "^6.2.0",
+    "mocha": "^3.0.2"
   },
   "eslintConfig": {
-    "extends": "@yomguithereal/eslint-config/es6",
-    "rules": {
-      "no-return-assign": 0
-    }
+    "extends": "standard"
   }
 }
