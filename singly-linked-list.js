@@ -78,6 +78,43 @@ SinglyLinkedList.prototype.get = function (index) {
   return currentNode;
 }
 
+SinglyLinkedList.prototype.remove = function (index) {
+  var count = 0;
+  var currentNode = this.head;
+  var beforeNodeToDelete = null;
+  var nodeToDelete = null;
+  var deletedNode = null;
+
+  // Throws an error when out of range.
+  if (this.size === 0 || index < 1 || index > this.size) {
+    throw new RangeError('Index is out of range.');
+  }
+
+  // When removing head.
+  if (index === 1) {
+    this.head = currentNode.next;
+    deletedNode = currentNode;
+    currentNode = null;
+    this.size--;
+
+    return deletedNode;
+  }
+
+  // When removing any other.
+  while (count < index) {
+    beforeNodeToDelete = currentNode;
+    nodeToDelete = currentNode.next;
+    count++;
+  }
+
+  beforeNodeToDelete.next = nodeToDelete.next;
+  deletedNode = nodeToDelete;
+  nodeToDelete = null;
+  this.size--;
+
+  return deletedNode;
+}
+
 /**
  * Remove all of the elements in this list.
  *
