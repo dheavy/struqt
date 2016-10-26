@@ -6,7 +6,7 @@ var assert = require('assert');
 var SinglyLinkedList = require('../singly-linked-list.js');
 
 describe('SinglyLinkedList', function () {
-  it('should add values', function () {
+  it('should add value', function () {
     var list = new SinglyLinkedList();
     list.add('element');
     assert.strictEqual(list.size, 1);
@@ -44,11 +44,20 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(list.size, 5);
     assert.strictEqual(list.get(1).data, 'one');
     assert.strictEqual(list.get(2).data, 'two');
+    assert.strictEqual(list.get(3).data, 'three');
+    assert.strictEqual(list.get(4).data, 'four');
+    assert.strictEqual(list.get(5).data, 'five');
 
     list.remove(2);
     assert.strictEqual(list.size, 4);
     assert.strictEqual(list.get(1).data, 'one');
     assert.strictEqual(list.get(2).data, 'three');
+    assert.strictEqual(list.get(3).data, 'four');
+    assert.strictEqual(list.get(4).data, 'five');
+
+    list.remove(4);
+    assert.strictEqual(list.size, 3);
+    assert.strictEqual(list.tail.data, 'four');
 
     assert.throws(function () { list.remove(10) }, RangeError);
   });

@@ -44,21 +44,25 @@ SinglyLinkedList.prototype.add = function (data) {
  * Append all of the elements in the specified array
  * to the end of this list.
  *
- * @param {array} data
+ * @param  {array}  elements
+ * @return {Object} Last inserted node (tail)
  */
-SinglyLinkedList.prototype.addAll = function (data) {
+SinglyLinkedList.prototype.addAll = function (elements) {
   var i = 0;
-  var l = data.length;
+  var l = elements.length;
+  var lastNode = null;
 
   for (i; i < l; i++) {
-    this.add(data[i]);
+    lastNode = this.add(elements[i]);
   }
+
+  return lastNode;
 }
 
 /**
  * Return the element at the specified position in this list.
  *
- * @param  {number}     index
+ * @param  {integer}    index
  * @throws {RangeError} If index is 0 or above size of this list
  * @return {Object}
  */
@@ -78,8 +82,14 @@ SinglyLinkedList.prototype.get = function (index) {
   return currentNode;
 }
 
+/**
+ * Remove the element at a given index.
+ *
+ * @param  {integer} index
+ * @return {Object}  The deleted node
+ */
 SinglyLinkedList.prototype.remove = function (index) {
-  var count = 0;
+  var count = 1;
   var currentNode = this.head;
   var beforeNodeToDelete = null;
   var nodeToDelete = null;
@@ -90,7 +100,7 @@ SinglyLinkedList.prototype.remove = function (index) {
     throw new RangeError('Index is out of range.');
   }
 
-  // When removing head.
+  // When removing the head.
   if (index === 1) {
     this.head = currentNode.next;
     deletedNode = currentNode;
@@ -103,7 +113,14 @@ SinglyLinkedList.prototype.remove = function (index) {
   // When removing any other.
   while (count < index) {
     beforeNodeToDelete = currentNode;
-    nodeToDelete = currentNode.next;
+    currentNode = currentNode.next;
+    nodeToDelete = currentNode;
+
+    // Replace tail if reached.
+    if (nodeToDelete === this.tail) {
+      this.tail = beforeNodeToDelete;
+    }
+
     count++;
   }
 
