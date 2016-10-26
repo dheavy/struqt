@@ -139,7 +139,7 @@ SinglyLinkedList.prototype.remove = function (index) {
  * @param  {*} element
  * @return {*} node     The removed node
  */
-SinglyLinkedList.prototype.removeFirstOccurrence(element) {}
+SinglyLinkedList.prototype.removeFirstOccurrence = function (element) {}
 
 /**
  * Removes the last occurrence of the specified element in this list
@@ -148,7 +148,7 @@ SinglyLinkedList.prototype.removeFirstOccurrence(element) {}
  * @param  {*}      element
  * @return {Object} The removed node
  */
-SinglyLinkedList.prototype.removeLastOccurrence(element) {}
+SinglyLinkedList.prototype.removeLastOccurrence = function (element) {}
 
 /**
  * Add an alement to the given index in this list.
