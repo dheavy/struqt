@@ -133,6 +133,24 @@ SinglyLinkedList.prototype.remove = function (index) {
 }
 
 /**
+ * Removes the first occurrence of the specified element in this list
+ * (when traversing the list from head to tail).
+ *
+ * @param  {*} element
+ * @return {*} node     The removed node
+ */
+SinglyLinkedList.prototype.removeFirstOcurrence(element) {}
+
+/**
+ * Removes the last occurrence of the specified element in this list
+ * (when traversing the list from head to tail).
+ *
+ * @param  {*}      element
+ * @return {Object} The removed node
+ */
+SinglyLinkedList.prototype.removeLastOcurrence(element) {}
+
+/**
  * Add an alement to the given index in this list.
  * Previous owner of this index is shifted to the right.
  *
@@ -216,6 +234,52 @@ SinglyLinkedList.prototype.addAllAtIndex = function (index, elements) {
   }
   lastNewNode.next = currentNode;
 }
+
+/**
+ * Return true if this list contains the specified element.
+ *
+ * @param  {*} element
+ * @return {boolean}
+ */
+SinglyLinkedList.prototype.contains = function (element) {}
+
+/**
+ * Remove and return the head.
+ *
+ * @return {Object} The former head node
+ */
+SinglyLinkedList.prototype.unshift = function () {}
+
+/**
+ * Remove and return the tail.
+ *
+ * @return {Object} The former tail node
+ */
+SinglyLinkedList.prototype.pop = function () {}
+
+/**
+ * Replace the element at the specified position
+ * in this list with the specified element.
+ *
+ * @param {integer} index
+ * @param {*}       element
+ */
+SinglyLinkedList.prototype.set = function (index, element) {}
+
+/**
+ * Return a shallow copy of this SinglyLinkedList.
+ *
+ * @return {Object} A new SinglyLinkedList instance
+ */
+SinglyLinkedList.prototype.clone = function () {}
+
+/**
+ * Returns an array containing all of the elements
+ * in this list in proper sequence (from first to last element).
+ *
+ * @return {array}
+ */
+SinglyLinkedList.prototype.toArray = function () {}
 
 /**
  * Remove all of the elements in this list.
