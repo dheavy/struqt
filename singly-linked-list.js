@@ -143,7 +143,7 @@ SinglyLinkedList.prototype.removeFirstOccurrence = function (element) {
   var count = 1;
   var currentNode = this.head;
 
-  while (count < this.size) {
+  while (count <= this.size) {
     if (element === currentNode.data) {
       return this.remove(count);
     }
@@ -159,7 +159,21 @@ SinglyLinkedList.prototype.removeFirstOccurrence = function (element) {
  * @param  {*}      element
  * @return {Object} The removed node
  */
-SinglyLinkedList.prototype.removeLastOccurrence = function (element) {}
+SinglyLinkedList.prototype.removeLastOccurrence = function (element) {
+  var count = 1;
+  var currentNode = this.head;
+  var deletedIndex = 1;
+
+  while (count <= this.size) {
+    if (element === currentNode.data) {
+      deletedIndex = count
+    }
+    currentNode = currentNode.next;
+    count++;
+  }
+
+  return this.remove(deletedIndex);
+}
 
 /**
  * Add an alement to the given index in this list.

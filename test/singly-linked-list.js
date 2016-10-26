@@ -125,4 +125,16 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(list.get(1).data, 'baz');
     assert.strictEqual(list.get(3).data, o);
   });
+
+  it('should remove the last occurence of an element', function () {
+    var list = new SinglyLinkedList();
+    var o = {foo: 'bar'};
+    list.addAll([o, 'baz', 'qux', o]);
+    assert.strictEqual(list.size, 4);
+
+    list.removeLastOccurrence(o);
+    assert.strictEqual(list.size, 3);
+    assert.strictEqual(list.get(1).data, o);
+    assert.strictEqual(list.get(3).data, 'qux');
+  });
 });
