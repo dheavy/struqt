@@ -132,6 +132,13 @@ SinglyLinkedList.prototype.remove = function (index) {
   return deletedNode;
 }
 
+/**
+ * Add an alement to the given index in this list.
+ * Previous owner of this index is shifted to the right.
+ *
+ * @param {integer} index
+ * @param {*}       element
+ */
 SinglyLinkedList.prototype.addAtIndex = function (index, element) {
   var count = 1;
   var currentNode = this.head;
@@ -160,6 +167,53 @@ SinglyLinkedList.prototype.addAtIndex = function (index, element) {
 
   lastNewNode = this.add(element);
   beforeCurrentNode.next = lastNewNode;
+  lastNewNode.next = currentNode;
+}
+
+/**
+ * Append all the elements in the specified array to the specified index.
+ * The previous owner of the index is shifted to the right after the last
+ * inserted element.
+ *
+ * @param {integer} index
+ * @param {array}   elements
+ */
+SinglyLinkedList.prototype.addAllAtIndex = function (index, elements) {
+  var count = 1;
+  var currentNode = this.head;
+  var beforeCurrentNode = null;
+  var lastNewNode = null;
+  var i = 0;
+  var l = elements.length;
+
+  // Throws an error when out of range.
+  if (this.size === 0 || index < 1 || index > this.size) {
+    throw new RangeError('Index is out of range.');
+  }
+
+  // When replacing the head.
+  if (index === 1) {
+    this.head = null;
+    for (i = 0; i < l; i++) {
+      lastNewNode = this.add(elements[i]);
+    }
+    lastNewNode.next = currentNode;
+    return;
+  }
+
+  // Any other.
+  while (count < index) {
+    beforeCurrentNode = currentNode;
+    currentNode = currentNode.next;
+    count++;
+  }
+
+  for (i = 0; i < l; i++) {
+    lastNewNode = this.add(elements[i]);
+    if (i === 0) {
+      beforeCurrentNode.next = lastNewNode;
+    }
+  }
   lastNewNode.next = currentNode;
 }
 

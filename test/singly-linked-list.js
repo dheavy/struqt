@@ -91,6 +91,26 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(list.get(6).data, 'four');
     assert.strictEqual(list.get(7).data, 'five');
 
-    assert.throws(function () { list.addAtIndex(30) }, RangeError);
+    assert.throws(function () { list.addAtIndex(30, 'x') }, RangeError);
+  });
+
+  it('should add an array of values from a given index onward', function () {
+    var list = new SinglyLinkedList();
+    list.addAll(['one', 'two', 'three']);
+    assert.strictEqual(list.size, 3);
+    assert.strictEqual(list.get(1).data, 'one');
+    assert.strictEqual(list.get(2).data, 'two');
+    assert.strictEqual(list.get(3).data, 'three');
+
+    list.addAllAtIndex(2, ['x', 'y', 'z']);
+    assert.strictEqual(list.size, 6);
+    assert.strictEqual(list.get(1).data, 'one');
+    assert.strictEqual(list.get(2).data, 'x');
+    assert.strictEqual(list.get(3).data, 'y');
+    assert.strictEqual(list.get(4).data, 'z');
+    assert.strictEqual(list.get(5).data, 'two');
+    assert.strictEqual(list.get(6).data, 'three');
+
+    assert.throws(function () { list.addAllAtIndex(30, 'x') }, RangeError);
   });
 });
