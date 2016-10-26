@@ -139,7 +139,18 @@ SinglyLinkedList.prototype.remove = function (index) {
  * @param  {*} element
  * @return {*} node     The removed node
  */
-SinglyLinkedList.prototype.removeFirstOccurrence = function (element) {}
+SinglyLinkedList.prototype.removeFirstOccurrence = function (element) {
+  var count = 1;
+  var currentNode = this.head;
+
+  while (count < this.size) {
+    if (element === currentNode.data) {
+      return this.remove(count);
+    }
+    currentNode = currentNode.next;
+    count++;
+  }
+}
 
 /**
  * Removes the last occurrence of the specified element in this list

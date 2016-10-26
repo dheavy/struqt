@@ -113,4 +113,16 @@ describe('SinglyLinkedList', function () {
 
     assert.throws(function () { list.addAllAtIndex(30, 'x') }, RangeError);
   });
+
+  it('should remove the first occurence of an element', function () {
+    var list = new SinglyLinkedList();
+    var o = {foo: 'bar'};
+    list.addAll([o, 'baz', 'qux', o]);
+    assert.strictEqual(list.size, 4);
+
+    list.removeFirstOccurrence(o);
+    assert.strictEqual(list.size, 3);
+    assert.strictEqual(list.get(1).data, 'baz');
+    assert.strictEqual(list.get(3).data, o);
+  });
 });
