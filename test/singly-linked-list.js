@@ -61,4 +61,36 @@ describe('SinglyLinkedList', function () {
 
     assert.throws(function () { list.remove(10) }, RangeError);
   });
+
+  it('should add a value from a given index onward', function () {
+    var list = new SinglyLinkedList();
+    list.addAll(['one', 'two', 'three', 'four', 'five']);
+    assert.strictEqual(list.size, 5);
+    assert.strictEqual(list.get(1).data, 'one');
+    assert.strictEqual(list.get(2).data, 'two');
+    assert.strictEqual(list.get(3).data, 'three');
+    assert.strictEqual(list.get(4).data, 'four');
+    assert.strictEqual(list.get(5).data, 'five');
+
+    list.addAtIndex(1, 'replace head');
+    assert.strictEqual(list.size, 6);
+    assert.strictEqual(list.get(1).data, 'replace head');
+    assert.strictEqual(list.get(2).data, 'one');
+    assert.strictEqual(list.get(3).data, 'two');
+    assert.strictEqual(list.get(4).data, 'three');
+    assert.strictEqual(list.get(5).data, 'four');
+    assert.strictEqual(list.get(6).data, 'five');
+
+    list.addAtIndex(4, 'between two and three');
+    assert.strictEqual(list.size, 7);
+    assert.strictEqual(list.get(1).data, 'replace head');
+    assert.strictEqual(list.get(2).data, 'one');
+    assert.strictEqual(list.get(3).data, 'two');
+    assert.strictEqual(list.get(4).data, 'between two and three');
+    assert.strictEqual(list.get(5).data, 'three');
+    assert.strictEqual(list.get(6).data, 'four');
+    assert.strictEqual(list.get(7).data, 'five');
+
+    assert.throws(function () { list.addAtIndex(30) }, RangeError);
+  });
 });

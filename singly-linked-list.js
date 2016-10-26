@@ -25,7 +25,7 @@ SinglyLinkedList.prototype.add = function (data) {
   // Empty list sets head.
   if (!currentNode) {
     this.head = node;
-    this.tail = node;
+    this.tail = this.tail || node;
     this.size++;
     return node;
   }
@@ -130,6 +130,37 @@ SinglyLinkedList.prototype.remove = function (index) {
   this.size--;
 
   return deletedNode;
+}
+
+SinglyLinkedList.prototype.addAtIndex = function (index, element) {
+  var count = 1;
+  var currentNode = this.head;
+  var beforeCurrentNode = null;
+  var lastNewNode = null;
+
+  // Throws an error when out of range.
+  if (this.size === 0 || index < 1 || index > this.size) {
+    throw new RangeError('Index is out of range.');
+  }
+
+  // When replacing the head.
+  if (index === 1) {
+    this.head = null;
+    lastNewNode = this.add(element);
+    lastNewNode.next = currentNode;
+    return;
+  }
+
+  // Any other.
+  while (count < index) {
+    beforeCurrentNode = currentNode;
+    currentNode = currentNode.next;
+    count++;
+  }
+
+  lastNewNode = this.add(element);
+  beforeCurrentNode.next = lastNewNode;
+  lastNewNode.next = currentNode;
 }
 
 /**
