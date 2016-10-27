@@ -148,7 +148,7 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(list.contains(o), true);
   });
 
-  it('should shift the head', function () {
+  it('should remove and return the head', function () {
     var list = new SinglyLinkedList();
     var head = null;
 
@@ -160,7 +160,7 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(head.data, 'foo');
   });
 
-  it('should shift the tail', function () {
+  it('should remove and return the tail', function () {
     var list = new SinglyLinkedList();
     var tail = null;
 
@@ -170,5 +170,20 @@ describe('SinglyLinkedList', function () {
     tail = list.pop();
     assert.strictEqual(list.tail.data, 'baz');
     assert.strictEqual(tail.data, 'qux');
+  });
+
+  it('should replace an element at a given index', function () {
+    var list = new SinglyLinkedList();
+    var replacement = 'xxx';
+
+    list.addAll(['foo', 'bar', 'baz', 'qux']);
+    list.set(1, replacement);
+    assert.strictEqual(list.head.data, replacement);
+
+    list.set(4, replacement);
+    assert.strictEqual(list.tail.data, replacement);
+
+    list.set(3, replacement);
+    assert.strictEqual(list.get(3).data, replacement);
   });
 });

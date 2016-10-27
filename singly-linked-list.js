@@ -308,7 +308,10 @@ SinglyLinkedList.prototype.pop = function () {
  * @param {integer} index
  * @param {*}       element
  */
-SinglyLinkedList.prototype.set = function (index, element) {}
+SinglyLinkedList.prototype.set = function (index, element) {
+  var node = this.get(index);
+  node.data = element;
+}
 
 /**
  * Return a shallow copy of this SinglyLinkedList.
