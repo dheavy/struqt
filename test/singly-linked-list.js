@@ -147,4 +147,16 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(list.contains('foo'), true);
     assert.strictEqual(list.contains(o), true);
   });
+
+  it('should shift the head', function () {
+    var list = new SinglyLinkedList();
+    var head = null;
+
+    list.addAll(['foo', 'bar', 'baz', 'qux']);
+    assert.strictEqual(list.head.data, 'foo');
+
+    head = list.shift();
+    assert.strictEqual(list.head.data, 'bar');
+    assert.strictEqual(head.data, 'foo');
+  });
 });

@@ -288,7 +288,9 @@ SinglyLinkedList.prototype.contains = function (element) {
  *
  * @return {Object} The former head node
  */
-SinglyLinkedList.prototype.unshift = function () {}
+SinglyLinkedList.prototype.shift = function () {
+  return this.remove(1);
+}
 
 /**
  * Remove and return the tail.
