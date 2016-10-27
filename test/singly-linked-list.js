@@ -186,4 +186,12 @@ describe('SinglyLinkedList', function () {
     list.set(3, replacement);
     assert.strictEqual(list.get(3).data, replacement);
   });
+
+  it('should return an array representation of the list', function () {
+    var list = new SinglyLinkedList();
+    var arr = ['foo', 'bar', 'baz', 'qux', {foo: 'bar'}];
+    list.addAll(arr);
+
+    assert.equal(JSON.stringify(list.toArray()), JSON.stringify(arr));
+  });
 });

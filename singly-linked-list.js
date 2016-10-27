@@ -326,7 +326,19 @@ SinglyLinkedList.prototype.clone = function () {}
  *
  * @return {array}
  */
-SinglyLinkedList.prototype.toArray = function () {}
+SinglyLinkedList.prototype.toArray = function () {
+  var currentNode = this.head
+  var count = 1;
+  var arr = [];
+
+  while (count <= this.size) {
+    arr.push(currentNode.data);
+    currentNode = currentNode.next;
+    count++;
+  }
+
+  return arr;
+}
 
 /**
  * Remove all of the elements in this list.
