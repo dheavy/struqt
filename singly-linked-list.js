@@ -266,7 +266,20 @@ SinglyLinkedList.prototype.addAllAtIndex = function (index, elements) {
  * @param  {*} element
  * @return {boolean}
  */
-SinglyLinkedList.prototype.contains = function (element) {}
+SinglyLinkedList.prototype.contains = function (element) {
+  var count = 1;
+  var currentNode = this.head;
+
+  while (count <= this.size) {
+    if (currentNode.data === element) {
+      return true;
+    }
+    currentNode = currentNode.next;
+    count++;
+  }
+
+  return false;
+}
 
 /**
  * Remove and return the head.

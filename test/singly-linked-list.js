@@ -138,4 +138,13 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(list.get(3).data, 'qux');
     assert.strictEqual(list.tail.data, 'qux')
   });
+
+  it('should return a boolean stating if it contains a given element', function () {
+    var list = new SinglyLinkedList();
+    var o = {foo: 'bar'};
+    list.addAll([o, 'foo', 'bar', 'baz']);
+    assert.strictEqual(list.contains('qux'), false);
+    assert.strictEqual(list.contains('foo'), true);
+    assert.strictEqual(list.contains(o), true);
+  });
 });
