@@ -159,4 +159,16 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(list.head.data, 'bar');
     assert.strictEqual(head.data, 'foo');
   });
+
+  it('should shift the tail', function () {
+    var list = new SinglyLinkedList();
+    var tail = null;
+
+    list.addAll(['foo', 'bar', 'baz', 'qux']);
+    assert.strictEqual(list.tail.data, 'qux');
+
+    tail = list.pop();
+    assert.strictEqual(list.tail.data, 'baz');
+    assert.strictEqual(tail.data, 'qux');
+  });
 });

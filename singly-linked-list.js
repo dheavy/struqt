@@ -297,7 +297,9 @@ SinglyLinkedList.prototype.shift = function () {
  *
  * @return {Object} The former tail node
  */
-SinglyLinkedList.prototype.pop = function () {}
+SinglyLinkedList.prototype.pop = function () {
+  return this.remove(this.size);
+}
 
 /**
  * Replace the element at the specified position
