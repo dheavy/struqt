@@ -187,6 +187,13 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(list.get(3).data, replacement);
   });
 
+  it('should return a clone of the list', function () {
+    var list = new SinglyLinkedList();
+    list.add(['foo', 'bar', 'baz', 'qux', {foo: 'bar', baz: {bar: {baz: {qux: 'foo'}}}}]);
+
+    assert.equal(JSON.stringify(list), JSON.stringify(list.clone()));
+  });
+
   it('should return an array representation of the list', function () {
     var list = new SinglyLinkedList();
     var arr = ['foo', 'bar', 'baz', 'qux', {foo: 'bar'}];

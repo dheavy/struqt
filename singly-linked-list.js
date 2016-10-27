@@ -318,7 +318,9 @@ SinglyLinkedList.prototype.set = function (index, element) {
  *
  * @return {Object} A new SinglyLinkedList instance
  */
-SinglyLinkedList.prototype.clone = function () {}
+SinglyLinkedList.prototype.clone = function () {
+  return Object.assign({}, this);
+}
 
 /**
  * Returns an array containing all of the elements
