@@ -42,5 +42,8 @@
       "node": true,
       "mocha": true
     }
+  },
+  "dependencies": {
+    "lodash.isequal": "^4.4.0"
   }
 }

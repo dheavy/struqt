@@ -7,6 +7,8 @@
  * include insertion, deletion and traversal.
  */
 
+var isEqual = require('lodash.isequal');
+
 function SinglyLinkedList () {
   this.clear();
 }
@@ -144,7 +146,7 @@ SinglyLinkedList.prototype.removeFirstOccurrence = function (element) {
   var currentNode = this.head;
 
   while (count <= this.size) {
-    if (element === currentNode.data) {
+    if (isEqual(element, currentNode.data)) {
       return this.remove(count);
     }
     currentNode = currentNode.next;
@@ -165,7 +167,7 @@ SinglyLinkedList.prototype.removeLastOccurrence = function (element) {
   var deletedIndex = 1;
 
   while (count <= this.size) {
-    if (element === currentNode.data) {
+    if (isEqual(element, currentNode.data)) {
       deletedIndex = count
     }
     currentNode = currentNode.next;
