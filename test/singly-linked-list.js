@@ -136,5 +136,6 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(list.size, 3);
     assert.strictEqual(list.get(1).data, o);
     assert.strictEqual(list.get(3).data, 'qux');
+    assert.strictEqual(list.tail.data, 'qux')
   });
 });
