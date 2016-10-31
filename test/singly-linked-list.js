@@ -132,7 +132,7 @@ describe('SinglyLinkedList', function () {
     assert.strictEqual(list.size, 3);
     assert.strictEqual(list.get(1).data, o);
     assert.strictEqual(list.get(3).data, 'qux');
-    assert.strictEqual(list.tail.data, 'qux')
+    assert.strictEqual(list.tail.data, 'qux');
   });
 
   it('should return a boolean stating if it contains a given element', function () {
