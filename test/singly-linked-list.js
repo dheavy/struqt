@@ -4,16 +4,19 @@
 
 var assert = require('assert');
 var SinglyLinkedList = require('../singly-linked-list.js');
+var list;
 
 describe('SinglyLinkedList', function () {
-  it('should add value', function () {
-    var list = new SinglyLinkedList();
+  beforeEach(function () {
+    list = new SinglyLinkedList();
+  });
+
+  it('should add a value', function () {
     list.add('element');
     assert.strictEqual(list.size, 1);
   });
 
   it('should add an array of values', function () {
-    var list = new SinglyLinkedList();
     list.addAll([1, 2, 3, 4, 5, 6]);
     assert.strictEqual(list.size, 6);
     assert.strictEqual(list.head.data, 1);
@@ -21,7 +24,6 @@ describe('SinglyLinkedList', function () {
   });
 
   it('should clear itself of all values', function () {
-    var list = new SinglyLinkedList();
     list.add('one');
     list.add('two');
     assert.strictEqual(list.size, 2);
@@ -32,14 +34,12 @@ describe('SinglyLinkedList', function () {
   });
 
   it('should search a node at a given index', function () {
-    var list = new SinglyLinkedList();
     list.addAll(['one', 'two', 'three', 'four', 'five']);
     assert.strictEqual(list.get(2).data, 'two');
     assert.throws(function () { list.get(6) }, RangeError);
   });
 
   it('should remove a node at a given index', function () {
-    var list = new SinglyLinkedList();
     list.addAll(['one', 'two', 'three', 'four', 'five']);
     assert.strictEqual(list.size, 5);
     assert.strictEqual(list.get(1).data, 'one');
@@ -62,8 +62,7 @@ describe('SinglyLinkedList', function () {
     assert.throws(function () { list.remove(10) }, RangeError);
   });
 
-  it('should add a value from a given index onward', function () {
-    var list = new SinglyLinkedList();
+  it('should add a value at a given index', function () {
     list.addAll(['one', 'two', 'three', 'four', 'five']);
     assert.strictEqual(list.size, 5);
     assert.strictEqual(list.get(1).data, 'one');
@@ -95,7 +94,6 @@ describe('SinglyLinkedList', function () {
   });
 
   it('should add an array of values from a given index onward', function () {
-    var list = new SinglyLinkedList();
     list.addAll(['one', 'two', 'three']);
     assert.strictEqual(list.size, 3);
     assert.strictEqual(list.get(1).data, 'one');
@@ -115,7 +113,6 @@ describe('SinglyLinkedList', function () {
   });
 
   it('should remove the first occurence of an element', function () {
-    var list = new SinglyLinkedList();
     var o = {foo: 'bar'};
     list.addAll([o, 'baz', 'qux', o]);
     assert.strictEqual(list.size, 4);
@@ -127,7 +124,6 @@ describe('SinglyLinkedList', function () {
   });
 
   it('should remove the last occurence of an element', function () {
-    var list = new SinglyLinkedList();
     var o = {foo: 'bar'};
     list.addAll([o, 'baz', 'qux', o]);
     assert.strictEqual(list.size, 4);
@@ -140,7 +136,6 @@ describe('SinglyLinkedList', function () {
   });
 
   it('should return a boolean stating if it contains a given element', function () {
-    var list = new SinglyLinkedList();
     var o = {foo: 'bar'};
     list.addAll([o, 'foo', 'bar', 'baz']);
     assert.strictEqual(list.contains('qux'), false);
@@ -149,7 +144,6 @@ describe('SinglyLinkedList', function () {
   });
 
   it('should remove and return the head', function () {
-    var list = new SinglyLinkedList();
     var head = null;
 
     list.addAll(['foo', 'bar', 'baz', 'qux']);
@@ -161,7 +155,6 @@ describe('SinglyLinkedList', function () {
   });
 
   it('should remove and return the tail', function () {
-    var list = new SinglyLinkedList();
     var tail = null;
 
     list.addAll(['foo', 'bar', 'baz', 'qux']);
@@ -173,7 +166,6 @@ describe('SinglyLinkedList', function () {
   });
 
   it('should replace an element at a given index', function () {
-    var list = new SinglyLinkedList();
     var replacement = 'xxx';
 
     list.addAll(['foo', 'bar', 'baz', 'qux']);
@@ -188,14 +180,12 @@ describe('SinglyLinkedList', function () {
   });
 
   it('should return a clone of the list', function () {
-    var list = new SinglyLinkedList();
     list.add(['foo', 'bar', 'baz', 'qux', {foo: 'bar', baz: {bar: {baz: {qux: 'foo'}}}}]);
 
     assert.equal(JSON.stringify(list), JSON.stringify(list.clone()));
   });
 
   it('should return an array representation of the list', function () {
-    var list = new SinglyLinkedList();
     var arr = ['foo', 'bar', 'baz', 'qux', {foo: 'bar'}];
     list.addAll(arr);
 
