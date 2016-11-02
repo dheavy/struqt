@@ -6,7 +6,7 @@
  *
  * @constructor
  */
-function SinglyLinkedList() {
+function SinglyLinkedList () {
   this.clear();
 }
 
@@ -235,7 +235,7 @@ SinglyLinkedList.prototype.addAllAtIndex = function (index, elements) {
   // When replacing the head.
   if (index === 1) {
     this.head = null;
-    for (i = 0; ien < l; i++) {
+    for (i = 0; i < len; i++) {
       lastNewNode = this.add(elements[i]);
     }
     lastNewNode.next = currentNode;
