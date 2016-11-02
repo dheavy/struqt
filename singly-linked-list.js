@@ -1,25 +1,21 @@
 /**
- * Singly Linked List.
- *
- * Contains nodes which have a data field as well as a 'next' field,
- * which points to the next node in line of nodes.
+ * A SinglyLinkedList instance ontains nodes (POJOs) which have a `data` field
+ * as well as a `next` field (the "link"), which points to the next node in line of nodes.
  * Operations that can be performed on singly linked lists
  * include insertion, deletion and traversal.
+ *
+ * @constructor
  */
-
-var isEqual = require('lodash.isequal');
-
-function SinglyLinkedList () {
+function SinglyLinkedList() {
   this.clear();
 }
 
 /**
  * Append the specified data to the end of this list.
  *
- * @param  {*}      data
- * @return {Object} The new node
+ * @param  {*}      data  Any object.
+ * @return {Object} The new node.
  */
-
 SinglyLinkedList.prototype.add = function (data) {
   var node = {data: data, next: null};
   var currentNode = this.head;
@@ -46,8 +42,8 @@ SinglyLinkedList.prototype.add = function (data) {
  * Append all of the elements in the specified array
  * to the end of this list.
  *
- * @param  {array}  elements
- * @return {Object} Last inserted node (tail)
+ * @param  {array}  elements  An array of any objects to be set as data for nodes.
+ * @return {Object} The last inserted node (tail).
  */
 SinglyLinkedList.prototype.addAll = function (elements) {
   var i = 0;
@@ -59,14 +55,14 @@ SinglyLinkedList.prototype.addAll = function (elements) {
   }
 
   return lastNode;
-}
+};
 
 /**
  * Return the element at the specified position in this list.
  *
- * @param  {integer}    index
+ * @param  {integer}    index   The index to look for.
  * @throws {RangeError} If index is 0 or above size of this list
- * @return {Object}
+ * @return {Object}  The node at the requested index.
  */
 SinglyLinkedList.prototype.get = function (index) {
   var cursor = 1;
@@ -82,13 +78,13 @@ SinglyLinkedList.prototype.get = function (index) {
   }
 
   return currentNode;
-}
+};
 
 /**
  * Remove the element at a given index.
  *
- * @param  {integer} index
- * @return {Object}  The deleted node
+ * @param  {integer} index  The index to target for node removal.
+ * @return {Object}  The deleted node.
  */
 SinglyLinkedList.prototype.remove = function (index) {
   var count = 1;
@@ -132,34 +128,34 @@ SinglyLinkedList.prototype.remove = function (index) {
   this.size--;
 
   return deletedNode;
-}
+};
 
 /**
  * Removes the first occurrence of the specified element in this list
  * (when traversing the list from head to tail).
  *
- * @param  {*} element
- * @return {*} node     The removed node
+ * @param  {*} element  The data the list should look for to delete the first matching node.
+ * @return {*} node     The removed node, bearing the first occurrence of the data.
  */
 SinglyLinkedList.prototype.removeFirstOccurrence = function (element) {
   var count = 1;
   var currentNode = this.head;
 
   while (count <= this.size) {
-    if (isEqual(element, currentNode.data)) {
+    if (require('lodash.isequal')(element, currentNode.data)) {
       return this.remove(count);
     }
     currentNode = currentNode.next;
     count++;
   }
-}
+};
 
 /**
  * Removes the last occurrence of the specified element in this list
  * (when traversing the list from head to tail).
  *
- * @param  {*}      element
- * @return {Object} The removed node
+ * @param  {*}      element   The data the list should look for to delete the last matching node.
+ * @return {Object} The removed node, bearing the last occurence of the data.
  */
 SinglyLinkedList.prototype.removeLastOccurrence = function (element) {
   var count = 1;
@@ -167,7 +163,7 @@ SinglyLinkedList.prototype.removeLastOccurrence = function (element) {
   var deletedIndex = 1;
 
   while (count <= this.size) {
-    if (isEqual(element, currentNode.data)) {
+    if (require('lodash.isequal')(element, currentNode.data)) {
       deletedIndex = count
     }
     currentNode = currentNode.next;
@@ -175,14 +171,14 @@ SinglyLinkedList.prototype.removeLastOccurrence = function (element) {
   }
 
   return this.remove(deletedIndex);
-}
+};
 
 /**
  * Add an alement to the given index in this list.
  * Previous owner of this index is shifted to the right.
  *
- * @param {integer} index
- * @param {*}       element
+ * @param {integer} index    The index at which the new node should be inserted.
+ * @param {*}       element  Any object to be used as data for the node.
  */
 SinglyLinkedList.prototype.addAtIndex = function (index, element) {
   var count = 1;
@@ -213,15 +209,15 @@ SinglyLinkedList.prototype.addAtIndex = function (index, element) {
   lastNewNode = this.add(element);
   beforeCurrentNode.next = lastNewNode;
   lastNewNode.next = currentNode;
-}
+};
 
 /**
  * Append all the elements in the specified array to the specified index.
  * The previous owner of the index is shifted to the right after the last
  * inserted element.
  *
- * @param {integer} index
- * @param {array}   elements
+ * @param {integer} index     The index at which the new node should be inserted.
+ * @param {array}   elements  An array of objects to use as data for nodes.
  */
 SinglyLinkedList.prototype.addAllAtIndex = function (index, elements) {
   var count = 1;
@@ -229,7 +225,7 @@ SinglyLinkedList.prototype.addAllAtIndex = function (index, elements) {
   var beforeCurrentNode = null;
   var lastNewNode = null;
   var i = 0;
-  var l = elements.length;
+  var len = elements.length;
 
   // Throws an error when out of range.
   if (this.size === 0 || index < 1 || index > this.size) {
@@ -239,7 +235,7 @@ SinglyLinkedList.prototype.addAllAtIndex = function (index, elements) {
   // When replacing the head.
   if (index === 1) {
     this.head = null;
-    for (i = 0; i < l; i++) {
+    for (i = 0; ien < l; i++) {
       lastNewNode = this.add(elements[i]);
     }
     lastNewNode.next = currentNode;
@@ -253,20 +249,20 @@ SinglyLinkedList.prototype.addAllAtIndex = function (index, elements) {
     count++;
   }
 
-  for (i = 0; i < l; i++) {
+  for (i = 0; i < len; i++) {
     lastNewNode = this.add(elements[i]);
     if (i === 0) {
       beforeCurrentNode.next = lastNewNode;
     }
   }
   lastNewNode.next = currentNode;
-}
+};
 
 /**
  * Return true if this list contains the specified element.
  *
- * @param  {*} element
- * @return {boolean}
+ * @param  {*} element  The object used as data to look for within nodes.
+ * @return {boolean}  True if the data was found in a node.
  */
 SinglyLinkedList.prototype.contains = function (element) {
   var count = 1;
@@ -281,52 +277,52 @@ SinglyLinkedList.prototype.contains = function (element) {
   }
 
   return false;
-}
+};
 
 /**
  * Remove and return the head.
  *
- * @return {Object} The former head node
+ * @return {Object} The former head node.
  */
 SinglyLinkedList.prototype.shift = function () {
   return this.remove(1);
-}
+};
 
 /**
  * Remove and return the tail.
  *
- * @return {Object} The former tail node
+ * @return {Object} The former tail node.
  */
 SinglyLinkedList.prototype.pop = function () {
   return this.remove(this.size);
-}
+};
 
 /**
  * Replace the element at the specified position
  * in this list with the specified element.
  *
- * @param {integer} index
- * @param {*}       element
+ * @param {integer} index     The index to target for node data replacement.
+ * @param {*}       element   Any object. The new data for the targeted node.
  */
 SinglyLinkedList.prototype.set = function (index, element) {
   var node = this.get(index);
   node.data = element;
-}
+};
 
 /**
  * Return a shallow copy of this SinglyLinkedList.
  *
- * @return {Object} A new SinglyLinkedList instance
+ * @return {Object} A new SinglyLinkedList instance.
  */
 SinglyLinkedList.prototype.clone = function () {
   return Object.assign({}, this);
-}
+};
 
 /**
- * Returns an array containing all of the elements
+ * Return an array containing all of the elements
  * in this list in proper sequence (from first to last element).
  *
- * @return {array}
+ * @return {array}  An array of data based on nodes' data.
  */
 SinglyLinkedList.prototype.toArray = function () {
   var currentNode = this.head
@@ -340,7 +336,7 @@ SinglyLinkedList.prototype.toArray = function () {
   }
 
   return arr;
-}
+};
 
 /**
  * Remove all of the elements in this list.
@@ -351,6 +347,6 @@ SinglyLinkedList.prototype.clear = function () {
   this.head = null;
   this.tail = null;
   this.size = 0;
-}
+};
 
 module.exports = SinglyLinkedList;
