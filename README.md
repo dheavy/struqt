@@ -15,7 +15,8 @@
 
 ### Usage
 
-  ##### API
+##### API
+
   `SinglyLinkedList` and `DoublyLinkedList`.
   - `list.add(element)` adds a new `element` (of any type) as a node to the list.
   - `list.addAll(elements)` inserts each members of an `elements` array into list.
@@ -33,11 +34,11 @@
   - `list.toArray()` returns an array of data compiled from the nodes in the list.
   - `list.clear()` resets the list.
 
-  ##### Documentation
-  Documentation for the library can be generated using [JSDoc](http://usejsdoc.org/).
-  Run the following command to dump a small HTML-based documentation in a `docs` directory.
+##### Documentation
+Documentation for the library can be generated using [JSDoc](http://usejsdoc.org/).
+Run the following command to dump a small HTML-based documentation in a `docs` directory.
 
-  `npm run doc`
+`npm run doc`
 
 ### Tests
 
