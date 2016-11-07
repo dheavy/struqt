@@ -305,8 +305,7 @@ SinglyLinkedList.prototype.pop = function () {
  * @param {*}       element   Any object. The new data for the targeted node.
  */
 SinglyLinkedList.prototype.set = function (index, element) {
-  var node = this.get(index);
-  node.data = element;
+  this.get(index).data = element;
 };
 
 /**
