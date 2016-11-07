@@ -7,7 +7,7 @@
     "lint": "eslint ./*.js ./test",
     "prepublish": "npm test && npm run clean",
     "test": "npm run lint && mocha -u bdd",
-    "test:cover": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --dir ./test",
+    "test:cover": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec",
     "clean": "rimraf -r ./docs",
     "doc": "jsdoc -c ./jsdoc.json "
   },
