@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./*.js ./test",
-    "prepublish": "npm test && npm clean",
+    "prepublish": "npm test && npm run clean",
     "test": "npm run lint && mocha",
     "clean": "rimraf -r ./docs",
     "doc": "jsdoc -c ./jsdoc.json "
