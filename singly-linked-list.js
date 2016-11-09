@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * A SinglyLinkedList instance ontains nodes (POJOs) which have a `data` field
  * as well as a `next` field (the "link"), which points to the next node in line of nodes.

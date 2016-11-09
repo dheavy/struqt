@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * A DoublyLinkedList instance ontains nodes which have a `data` field as well
  * as `prev` and `next` fields (the "links") which point to the previous and
