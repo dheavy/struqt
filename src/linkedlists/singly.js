@@ -8,7 +8,7 @@ const areEquals = require('deep-equal');
  *
  * @constructor
  */
-const List = () => {
+function List() {
   this.clear();
 };
 
@@ -18,7 +18,7 @@ const List = () => {
  * @param  {*}      data  Any type of data.
  * @return {Object} The new node.
  */
-List.prototype.add = data => {
+List.prototype.add = function (data) {
   const node = {data, next: null};
 
   if (this.size === 0) {
@@ -42,7 +42,7 @@ List.prototype.add = data => {
  * @param  {*} ...data  Any numbers of any type of data.
  * @return {Object} The last inserted node (tail).
  */
-List.prototype.addAll = () => {
+List.prototype.addAll = function () {
   [].forEach.call(arguments, data => this.add(data));
   return this.tail;
 };
@@ -56,7 +56,7 @@ List.prototype.addAll = () => {
  * @throws {RangeError} If index is out of bounds.
  * @return {Object} The newly created node.
  */
-List.prototype.addAtIndex = (index, data) => {
+List.prototype.addAtIndex = function (index, data) {
   let prev;
 
   if (this.size === 0 || index < 1 || index > this.size) {
@@ -92,7 +92,7 @@ List.prototype.addAtIndex = (index, data) => {
  * @throws {RangeError} If index is out of bounds.
  * @return {Object} The last of the newly created node.
  */
-List.prototype.addAllAtIndex = () => {
+List.prototype.addAllAtIndex = function () {
   let index = +[].slice.call(arguments, 0, 1);
 
   if (this.size === 0 || index < 1 || index > this.size) {
@@ -150,7 +150,7 @@ List.prototype.addAllAtIndex = () => {
  * @throws {RangeError} If index is out of bounds.
  * @return {Object}  The node at the requested index.
  */
-List.prototype.get = index => {
+List.prototype.get = function (index) {
   if (this.size === 0 || index < 1 || index > this.size) {
     throw new RangeError('index is out of range');
   }
@@ -177,7 +177,7 @@ List.prototype.get = index => {
  * @throws {RangeError} If index is out of bounds.
  * @return {Object}  The deleted node.
  */
-List.prototype.remove = index => {
+List.prototype.remove = function (index) {
   if (this.size === 0 || index < 1 || index > this.size) {
     throw new RangeError('index is out of range');
   }
@@ -211,7 +211,7 @@ List.prototype.remove = index => {
  * @param  {*} data  The data to look for within nodes.
  * @return {boolean}  True if the data was found in a node.
  */
-List.prototype.contains = data => {
+List.prototype.contains = function (data) {
   let current = this.head.next;
 
   if (areEquals(current.data, data)) {
@@ -235,7 +235,7 @@ List.prototype.contains = data => {
  *
  * @return {Object} The removed node.
  */
-List.prototype.shift = () => {
+List.prototype.shift = function () {
   return this.remove(1);
 };
 
@@ -245,7 +245,7 @@ List.prototype.shift = () => {
  *
  * @return {Object} The removed node.
  */
-List.prototype.pop = () => {
+List.prototype.pop = function () {
   return this.remove(this.size);
 };
 
@@ -256,7 +256,7 @@ List.prototype.pop = () => {
  * @param  {*}       data   Any data to update the node's data field.
  * @return {void}
  */
-List.prototype.set = (index, data) => {
+List.prototype.set = function (index, data) {
   this.get(index).data = data;
 };
 
@@ -265,7 +265,7 @@ List.prototype.set = (index, data) => {
  *
  * @return {Object} A singly linked list instance with copied nodes and data.
  */
-List.prototype.clone = () => {
+List.prototype.clone = function () {
   return Object.assign({}, this);
 };
 
@@ -274,7 +274,7 @@ List.prototype.clone = () => {
  *
  * @return {Array}  An array of data based on the actual nodes' data.
  */
-List.prototype.toArray = () => {
+List.prototype.toArray = function () {
   let current = this.head.next;
   let cursor = 1;
   let a = [];
@@ -293,7 +293,7 @@ List.prototype.toArray = () => {
  *
  * @return {void}
  */
-List.prototype.clear = () => {
+List.prototype.clear = function () {
   this.head = {next: null};
   this.tail = null;
   this.size = 0;
