@@ -105,4 +105,11 @@ describe('Singly Linked List', () => {
     list.set(5, 'friday');
     assert.strictEqual(list.get(5).data, 'friday');
   });
+
+  it('should return a clone (shallow copy) of the list', () => {
+    list.addAll('monday', 'tuesday', 'wednesday', 'thursday', 'friday');
+    const clone = list.clone();
+
+    assert.equal(JSON.stringify(list), JSON.stringify(clone));
+  });
 });
