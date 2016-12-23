@@ -57,20 +57,15 @@ List.prototype.addAll = function () {
  * @return {Object} The newly created node.
  */
 List.prototype.addAtIndex = function (index, data) {
-  let prev;
-
   if (this.size === 0 || index < 1 || index > this.size) {
     throw new RangeError('index is out of range');
   }
 
-  if (index === 1) {
-    prev = this.head;
-  }
-
   let cursor = 1;
+  let prev = this.head;
   let current = this.head.next;
 
-  while (current < index) {
+  while (cursor < index) {
     prev = current;
     current = current.next;
     cursor++;
@@ -78,6 +73,8 @@ List.prototype.addAtIndex = function (index, data) {
 
   const node = {data, next: current};
   prev.next = node;
+
+  this.size++;
 
   return node;
 };

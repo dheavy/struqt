@@ -15,4 +15,18 @@ describe('Singly Linked List', () => {
     list.add('monday');
     assert.strictEqual(list.size, 1);
   });
+
+  it ('should add all values', () => {
+    list.addAll('monday', 'tuesday', 'wednesday');
+    assert.strictEqual(list.size, 3);
+  });
+
+  it('should add value at defined index', () => {
+    list.addAll('monday', 'wednesday');
+    list.addAtIndex(2, 'tuesday');
+    assert.strictEqual(list.size, 3);
+    assert.strictEqual(list.get(1).data, 'monday');
+    assert.strictEqual(list.get(2).data, 'tuesday');
+    assert.strictEqual(list.get(3).data, 'wednesday');
+  });
 });
