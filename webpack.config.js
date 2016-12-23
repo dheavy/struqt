@@ -3,16 +3,7 @@ var path = require('path');
 var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 var env = process.env.WEBPACK_ENV;
 var nodeExternals = require('webpack-node-externals');
-
 var plugins = [];
-var outputFile;
-
-if (env === 'build') {
-  plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = libraryName + '.min.js';
-} else {
-  outputFile = libraryName + '.js';
-}
 
 var config = {
   entry: 'babel-polyfill',
@@ -57,4 +48,15 @@ var singly = Object.assign({}, config, {
   }
 });
 
-module.exports = [singly];
+var doubly = Object.assign({}, config, {
+  name: 'doubly-linked-list',
+  entry: './src/linkedlists/doubly.js',
+  output: {
+    path: './linkedlists',
+    filename: 'doubly.js',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
+  }
+});
+
+module.exports = [singly, doubly];
