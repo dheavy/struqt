@@ -61,4 +61,16 @@ describe('Singly Linked List', () => {
     assert.strictEqual(list.get(2).data, 'tuesday');
     assert.strictEqual(list.get(3).data, 'wednesday');
   });
+
+  it('should remove node at given index', () => {
+    list.addAll('monday', 'tuesday', 'wednesday', 'thursday', 'friday');
+
+    const removed = list.remove(1);
+    assert.strictEqual(list.size, 4);
+    assert.strictEqual(removed.data, 'monday');
+    assert.strictEqual(list.get(1).data, 'tuesday');
+
+    list.remove(4);
+    assert.strictEqual(list.tail.data, 'thursday');
+  });
 });
