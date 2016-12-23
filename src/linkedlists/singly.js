@@ -273,7 +273,7 @@ List.prototype.toArray = function () {
   let cursor = 1;
   let a = [];
 
-  while (cursor < this.size) {
+  while (cursor <= this.size) {
     a.push(current.data);
     current = current.next;
     cursor++;

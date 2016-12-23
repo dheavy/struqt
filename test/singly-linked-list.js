@@ -110,6 +110,16 @@ describe('Singly Linked List', () => {
     list.addAll('monday', 'tuesday', 'wednesday', 'thursday', 'friday');
     const clone = list.clone();
 
-    assert.equal(JSON.stringify(list), JSON.stringify(clone));
+    assert.strictEqual(JSON.stringify(list), JSON.stringify(clone));
+  });
+
+  it('should return an array made from nodes data', () => {
+    list.addAll('monday', 'tuesday', 'wednesday', 'thursday', 'friday');
+    const arr = list.toArray();
+
+    assert.strictEqual(
+      JSON.stringify(arr),
+      JSON.stringify(['monday', 'tuesday', 'wednesday', 'thursday', 'friday'])
+    );
   });
 });
