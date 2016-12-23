@@ -11,7 +11,23 @@ function List() {
  * @return {Object} The new node.
  */
 List.prototype.add = function (data) {
+  const node = {data, previous: null, next: null};
 
+  if (this.size === 0) {
+    node.previous = this.head;
+    this.head.next = node;
+    this.tail = node;
+    this.size++;
+    return node;
+  }
+
+  const oldTail = this.tail;
+  oldTail.next = node;
+  node.previous = oldTail;
+  this.tail = node;
+  this.size++;
+
+  return node;
 };
 
 /**
@@ -21,7 +37,8 @@ List.prototype.add = function (data) {
  * @return {Object} The last inserted node (tail).
  */
 List.prototype.addAll = function () {
-
+  [].forEach.call(arguments, data => this.add(data));
+  return this.tail;
 };
 
 /**
@@ -34,7 +51,26 @@ List.prototype.addAll = function () {
  * @return {Object} The newly created node.
  */
 List.prototype.addAtIndex = function (index, data) {
+  if (this.size === 0 || index < 1 || index > this.size) {
+    throw new RangeError('index is out of range');
+  }
 
+  let cursor = 1;
+  let prev = this.head;
+  let current = this.head.next;
+
+  while (cursor < index) {
+    prev = current;
+    current = current.next;
+    cursor++;
+  }
+
+  const node = {data, previous: prev, next: current};
+  prev.next = node;
+
+  this.size++;
+
+  return node;
 };
 
 /**
@@ -59,7 +95,19 @@ List.prototype.addAllAtIndex = function () {
  * @return {Object}  The node at the requested index.
  */
 List.prototype.get = function (index) {
+  if (this.size === 0 || index < 1 || index > this.size) {
+    throw new RangeError('index is out of range');
+  }
 
+  let cursor = 1;
+  let current = this.head.next;
+
+  while (cursor < index) {
+    current = current.next;
+    cursor++;
+  }
+
+  return current;
 };
 
 /**

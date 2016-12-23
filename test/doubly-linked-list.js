@@ -53,7 +53,7 @@ describe('Doubly Linked List', () => {
     list.addAtIndex(1, 'sunday');
     assert.strictEqual(list.size, 4);
     assert.strictEqual(list.get(1).data, 'sunday');
-    assert.strictEqual(list.get(1).data.previous, list.head);
+    assert.strictEqual(list.get(1).previous, list.head);
     assert.strictEqual(list.get(2).data, 'monday');
     assert.strictEqual(list.tail.data, 'wednesday');
   });
@@ -74,7 +74,7 @@ describe('Doubly Linked List', () => {
     list.addAllAtIndex(1, 'before sunday', 'sunday');
     assert.strictEqual(8, list.size);
     assert.strictEqual(list.get(1).data, 'before sunday');
-    assert.strictEqual(list.get(1).data.previous, list.head);
+    assert.strictEqual(list.get(1).previous, list.head);
     assert.strictEqual(list.get(2).data, 'sunday');
     assert.strictEqual(list.get(3).data, 'monday');
   });
