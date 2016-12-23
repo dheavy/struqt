@@ -4,7 +4,6 @@ var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 var env = process.env.WEBPACK_ENV;
 var nodeExternals = require('webpack-node-externals');
 
-var libraryName = 'struqt';
 var plugins = [];
 var outputFile;
 
@@ -16,19 +15,8 @@ if (env === 'build') {
 }
 
 var config = {
-  entry: [
-    'babel-polyfill',
-    './src/linkedlists/singly.js',
-    './src/linkedlists/doubly.js',
-  ],
+  entry: 'babel-polyfill',
   devtool: 'source-map',
-  output: {
-    path: './lib',
-    filename: outputFile,
-    library: libraryName,
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  },
   target: 'node',
   externals: [nodeExternals()],
   module: {
@@ -58,4 +46,15 @@ var config = {
   plugins: plugins
 };
 
-module.exports = config;
+var singly = Object.assign({}, config, {
+  name: 'singly-linked-list',
+  entry: './src/linkedlists/singly.js',
+  output: {
+    path: './linkedlists',
+    filename: 'singly.js',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
+  }
+});
+
+module.exports = [singly];
