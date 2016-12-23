@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint ./*.js ./test",
     "prepublish": "npm test && npm run clean && npm run build",
-    "test": "npm run lint && mocha -u bdd",
+    "test": "npm run lint && mocha -u bdd --use_strict --compilers js:babel-register",
     "test:cover": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec",
     "test:coveralls": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "clean": "rimraf -r ./docs",
