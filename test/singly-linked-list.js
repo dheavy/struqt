@@ -79,4 +79,20 @@ describe('Singly Linked List', () => {
     assert.strictEqual(true, list.contains('monday'));
     assert.strictEqual(false, list.contains('sunday'));
   });
+
+  it('should shift value, similar to an array', () => {
+    list.addAll('monday', 'tuesday', 'wednesday', 'thursday', 'friday');
+    const shifted = list.shift();
+
+    assert.strictEqual(list.size, 4);
+    assert.strictEqual(shifted.data, 'monday');
+  });
+
+  it('should pop value, similar to an array', () => {
+    list.addAll('monday', 'tuesday', 'wednesday', 'thursday', 'friday');
+    const popped = list.pop();
+
+    assert.strictEqual(list.size, 4);
+    assert.strictEqual(popped.data, 'friday');
+  })
 });
