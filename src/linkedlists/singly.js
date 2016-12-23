@@ -114,10 +114,10 @@ List.prototype.addAllAtIndex = function () {
   // Process recursively and return reference to the latest
   // node created when done.
   const endNode = (function weave(i, nodes, data, prev, current) {
-    if (i === nodes.length - 1) {
+    if (i === data.length) {
       // Transplant both ends of array of new nodes to existing linked list.
       prev.next = nodes[0];
-      const endNode = nodes[i];
+      const endNode = nodes[nodes.length - 1];
       endNode.next = current;
 
       // Kill references of nodes and return latest one.
@@ -126,17 +126,18 @@ List.prototype.addAllAtIndex = function () {
     }
 
     // Build node and link reference with previous one.
-    const node = {data: nodes[i], next: null};
+    const node = {data: data[i], next: null};
     if (i > 0) {
       nodes[i - 1].next = node;
     }
 
     // Store node and repeat.
     nodes.push(node);
-    weave(++i, nodes, data, prev, current);
+    return weave(++i, nodes, data, prev, current);
   })(0, [], data, prev, current);
 
   this.size += data.length;
+
   return endNode;
 };
 
