@@ -3,7 +3,13 @@ var path = require('path');
 var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 var env = process.env.WEBPACK_ENV;
 var nodeExternals = require('webpack-node-externals');
+
 var plugins = [];
+var outputFile;
+
+if (env === 'build') {
+  plugins.push(new UglifyJsPlugin({ minimize: true }));
+}
 
 var config = {
   entry: 'babel-polyfill',
