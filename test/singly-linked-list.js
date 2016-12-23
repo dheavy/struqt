@@ -94,5 +94,15 @@ describe('Singly Linked List', () => {
 
     assert.strictEqual(list.size, 4);
     assert.strictEqual(popped.data, 'friday');
-  })
+  });
+
+  it('should set (edit) data in node at given index', () => {
+    list.addAll('xxx', 'tuesday', 'wednesday', 'thursday', 'ooo');
+
+    list.set(1, 'monday');
+    assert.strictEqual(list.get(1).data, 'monday');
+
+    list.set(5, 'friday');
+    assert.strictEqual(list.get(5).data, 'friday');
+  });
 });
