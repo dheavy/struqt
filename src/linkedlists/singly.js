@@ -156,10 +156,6 @@ List.prototype.get = function (index) {
   let cursor = 1;
   let current = this.head.next;
 
-  if (cursor === index) {
-    return current;
-  }
-
   while (cursor < index) {
     current = current.next;
     cursor++;

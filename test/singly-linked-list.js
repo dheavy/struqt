@@ -54,4 +54,11 @@ describe('Singly Linked List', () => {
     assert.strictEqual(list.get(2).data, 'sunday');
     assert.strictEqual(list.get(3).data, 'monday');
   });
+
+  it('should get node at given index', () => {
+    list.addAll('monday', 'tuesday', 'wednesday');
+    assert.strictEqual(list.get(1).data, 'monday');
+    assert.strictEqual(list.get(2).data, 'tuesday');
+    assert.strictEqual(list.get(3).data, 'wednesday');
+  });
 });
