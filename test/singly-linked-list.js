@@ -2,7 +2,7 @@
  * Tests for singly linked list.
  */
 const assert = require('assert');
-const LinkedList = require('../src/linkedlists/singly');
+const LinkedList = require('../linkedlists/singly');
 
 let list;
 
