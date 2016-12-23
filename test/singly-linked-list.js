@@ -122,4 +122,13 @@ describe('Singly Linked List', () => {
       JSON.stringify(['monday', 'tuesday', 'wednesday', 'thursday', 'friday'])
     );
   });
+
+  it('should clear/reset list', () => {
+    list.addAll('monday', 'tuesday', 'wednesday', 'thursday', 'friday');
+
+    list.clear();
+    assert.strictEqual(list.size, 0);
+    assert.strictEqual(list.tail, null);
+    assert.deepStrictEqual(list.head, {next: null});
+  });
 });
