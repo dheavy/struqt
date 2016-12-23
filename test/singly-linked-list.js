@@ -73,4 +73,10 @@ describe('Singly Linked List', () => {
     list.remove(4);
     assert.strictEqual(list.tail.data, 'thursday');
   });
+
+  it('should return true if list contains data, false otherwise', () => {
+    list.addAll('monday', 'tuesday', 'wednesday', 'thursday', 'friday');
+    assert.strictEqual(true, list.contains('monday'));
+    assert.strictEqual(false, list.contains('sunday'));
+  });
 });
