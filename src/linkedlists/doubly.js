@@ -84,7 +84,58 @@ List.prototype.addAtIndex = function (index, data) {
  * @return {Object} The last of the newly created node.
  */
 List.prototype.addAllAtIndex = function () {
+  let index = +[].slice.call(arguments, 0, 1);
 
+  if (this.size === 0 || index < 1 || index > this.size) {
+    throw new RangeError('index is out of range');
+  }
+
+  let prev = this.head;
+  let current = this.head.next;
+  let cursor = 1;
+  let data = [].slice.call(arguments, 1);
+
+  while (cursor < index) {
+    prev = current;
+    current = current.next;
+    if (!current) {
+      this.tail = prev;
+    }
+    cursor++;
+  }
+
+  // Create array of newly created nodes from data.
+  // Process recursively and return reference to the latest
+  // node created when done.
+  const endNode = (function weave(i, nodes, data, prev, current) {
+    if (i === data.length) {
+      // Transplant both ends of array of new nodes to existing linked list.
+      prev.next = nodes[0];
+      nodes[0].previous = prev;
+      const endNode = nodes[nodes.length - 1];
+      endNode.next = current;
+      current.previous = endNode;
+
+      // Kill references of nodes and return latest one.
+      nodes = null;
+      return endNode;
+    }
+
+    // Build node and link reference with previous one.
+    const node = {data: data[i], next: null};
+    if (i > 0) {
+      nodes[i - 1].next = node;
+      node.previous = nodes[i - 1];
+    }
+
+    // Store node and repeat.
+    nodes.push(node);
+    return weave(++i, nodes, data, prev, current);
+  })(0, [], data, prev, current);
+
+  this.size += data.length;
+
+  return endNode;
 };
 
 /**
