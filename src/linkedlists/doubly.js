@@ -169,7 +169,33 @@ List.prototype.get = function (index) {
  * @return {Object}  The deleted node.
  */
 List.prototype.remove = function (index) {
+  if (this.size === 0 || index < 1 || index > this.size) {
+    throw new RangeError('index is out of range');
+  }
 
+  let cursor = 1;
+  let prev = this.head;
+  let current = this.head.next;
+  let next = current.next;
+
+  while (cursor < index) {
+    prev = current;
+    current = current.next;
+    next = current.next;
+    cursor++;
+  }
+
+  const deleted = current;
+  prev.next = next;
+  if (!next) {
+    this.tail = prev;
+  } else {
+    next.previous = prev;
+  }
+  current = null;
+  this.size--;
+
+  return deleted;
 };
 
 /**
