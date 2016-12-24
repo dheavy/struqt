@@ -4,6 +4,45 @@
 const assert = require('assert');
 const LinkedList = require('../linkedlists/doubly');
 
+function isCircularEqual (a, b) {
+  let stack = [];
+  function _isEqual (a, b) {
+    // console.log("->", stack.length);
+    // handle some simple cases first
+    if (a === b) return true;
+    if (typeof(a) !== "object" || typeof(b) !== "object") return false;
+    // XXX: typeof(null) === "object", but Object.getPrototypeOf(null) throws!
+    if (a === null || b === null) return false;
+    let proto = Object.getPrototypeOf(a);
+    if (proto !== Object.getPrototypeOf(b)) return false;
+    // assume that non-identical objects of unrecognized type are not equal
+    // XXX: could add code here to properly compare e.g. Date objects
+    if (proto !== Object.prototype && proto !== Array.prototype) return false;
+
+    // check the stack before doing a recursive comparison
+    for (let i = 0; i < stack.length; i++) {
+      if (a === stack[i][0] && b === stack[i][1]) return true;
+      // if (b === stack[i][0] && a === stack[i][1]) return true;
+    }
+
+    // do the objects even have the same keys?
+    for (let prop in a) if (!(prop in b)) return false;
+    for (let prop in b) if (!(prop in a)) return false;
+
+    // nothing to do but recurse!
+    stack.push([a, b]);
+    for (let prop in a) {
+      if (!(_isEqual(a[prop], b[prop]))) {
+        stack.pop();
+        return false;
+      }
+    }
+    stack.pop();
+    return true;
+  }
+  return _isEqual(a, b);
+}
+
 let list;
 
 describe('Doubly Linked List', () => {
@@ -90,6 +129,7 @@ describe('Doubly Linked List', () => {
     assert.strictEqual(list.get(2).previous.data, 'tuesday');
 
     list.remove(4);
+    assert.strictEqual(list.size, 3);
     assert.strictEqual(list.tail.data, 'thursday');
     assert.strictEqual(list.tail.previous.data, 'wednesday');
   });
@@ -129,10 +169,16 @@ describe('Doubly Linked List', () => {
   });
 
   it('should return a clone (shallow copy) of the list', () => {
-    list.addAll('monday', 'tuesday', 'wednesday', 'thursday', 'friday');
+    list.addAll('monday', 'tuesday', 'wednesday');
     const clone = list.clone();
 
-    assert.strictEqual(JSON.stringify(list), JSON.stringify(clone));
+    assert.strictEqual(list.get(1).previous, list.head);
+    assert.strictEqual(list.get(2).previous.data, 'monday');
+    assert.strictEqual(list.get(3).previous.data, 'tuesday');
+
+    assert.strictEqual(clone.get(1).previous, clone.head);
+    assert.strictEqual(clone.get(2).previous.data, 'monday');
+    assert.strictEqual(clone.get(3).previous.data, 'tuesday');
   });
 
   it('should return an array made from nodes data', () => {

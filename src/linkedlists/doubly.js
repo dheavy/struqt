@@ -250,7 +250,7 @@ List.prototype.pop = function () {
  * @return {void}
  */
 List.prototype.set = function (index, data) {
-
+  this.get(index).data = data;
 };
 
 /**
@@ -259,7 +259,7 @@ List.prototype.set = function (index, data) {
  * @return {Object} A singly linked list instance with copied nodes and data.
  */
 List.prototype.clone = function () {
-
+  return Object.assign(Object.create(this), this);
 };
 
 /**
@@ -268,7 +268,17 @@ List.prototype.clone = function () {
  * @return {Array}  An array of data based on the actual nodes' data.
  */
 List.prototype.toArray = function () {
+  let current = this.head.next;
+  let cursor = 1;
+  let a = [];
 
+  while (cursor <= this.size) {
+    a.push(current.data);
+    current = current.next;
+    cursor++;
+  }
+
+  return a;
 };
 
 /**
