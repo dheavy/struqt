@@ -111,6 +111,8 @@ describe('Singly Linked List', () => {
     const clone = list.clone();
 
     assert.strictEqual(JSON.stringify(list), JSON.stringify(clone));
+    assert.strictEqual(list.get(1).data, 'monday');
+    assert.strictEqual(clone.get(1).data, 'monday');
   });
 
   it('should return an array made from nodes data', () => {

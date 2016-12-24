@@ -260,7 +260,7 @@ List.prototype.set = function (index, data) {
  * @return {Object} A singly linked list instance with copied nodes and data.
  */
 List.prototype.clone = function () {
-  return Object.assign({}, this);
+  return Object.assign(Object.create(this), this);
 };
 
 /**
