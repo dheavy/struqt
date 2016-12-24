@@ -205,7 +205,22 @@ List.prototype.remove = function (index) {
  * @return {boolean}  True if the data was found in a node.
  */
 List.prototype.contains = function (data) {
+  let current = this.head.next;
 
+  if (areEquals(current.data, data)) {
+    return true
+  }
+
+  let cursor = 1;
+  while (cursor < this.size) {
+    current = current.next;
+    if (areEquals(current.data, data)) {
+      return true;
+    }
+    cursor++;
+  }
+
+  return false;
 };
 
 /**
