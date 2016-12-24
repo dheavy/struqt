@@ -229,7 +229,7 @@ List.prototype.contains = function (data) {
  * @return {Object} The removed node.
  */
 List.prototype.shift = function () {
-
+  return this.remove(1);
 };
 
 
@@ -239,7 +239,7 @@ List.prototype.shift = function () {
  * @return {Object} The removed node.
  */
 List.prototype.pop = function () {
-
+  return this.remove(this.size);
 };
 
 /**
