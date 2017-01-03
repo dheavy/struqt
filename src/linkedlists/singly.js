@@ -42,8 +42,8 @@ List.prototype.add = function (data) {
  * @param  {*} ...data  Any numbers of any type of data.
  * @return {Object} The last inserted node (tail).
  */
-List.prototype.addAll = function () {
-  [].forEach.call(arguments, data => this.add(data));
+List.prototype.addAll = function (...data) {
+  data.forEach(data => this.add(data));
   return this.tail;
 };
 
@@ -89,9 +89,7 @@ List.prototype.addAtIndex = function (index, data) {
  * @throws {RangeError} If index is out of bounds.
  * @return {Object} The last of the newly created node.
  */
-List.prototype.addAllAtIndex = function () {
-  let index = +[].slice.call(arguments, 0, 1);
-
+List.prototype.addAllAtIndex = function (index, ...data) {
   if (this.size === 0 || index < 1 || index > this.size) {
     throw new RangeError('index is out of range');
   }
@@ -99,7 +97,6 @@ List.prototype.addAllAtIndex = function () {
   let prev = this.head;
   let current = this.head.next;
   let cursor = 1;
-  let data = [].slice.call(arguments, 1);
 
   while (cursor < index) {
     prev = current;
@@ -202,7 +199,7 @@ List.prototype.remove = function (index) {
 /**
  * Return true if this list contains a node holding the specified data.
  *
- * @param  {*} data  The data to look for within nodes.
+ * @param  {*} data   The data to look for within nodes.
  * @return {boolean}  True if the data was found in a node.
  */
 List.prototype.contains = function (data) {
